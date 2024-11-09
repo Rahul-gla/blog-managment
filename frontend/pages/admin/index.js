@@ -9,7 +9,7 @@ const AdminPage = () => {
   const [editBlog, setEditBlog] = useState(null); // State for editing a blog
 
   const fetchBlogs = async () => {
-    const response = await fetch('http://localhost:5000/api/blogs');
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}`);
     const data = await response.json();
     setBlogs(data);
   };
@@ -36,7 +36,7 @@ const AdminPage = () => {
       setEditBlog(null); // Reset edit state
     } else {
       // Create new blog
-      await fetch('http://localhost:5000/api/blogs', {
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL}`, {
         method: 'POST',
         body: formData,
       });
